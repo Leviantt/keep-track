@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Project } from "./Project";
 
 interface ProjectFormProps {
@@ -42,8 +42,10 @@ const ProjectForm = ({onCancel, onSave, project: initialProject}: ProjectFormPro
         setProject((prevProject: Project) => {
             return  new Project({...prevProject, ...change});
         })
-        setErrors(() => validate());
     } 
+    useEffect(() => {
+        setErrors(() => validate());
+    }, [project]);
     return (
         <form 
             className="input-group vertical"
@@ -58,9 +60,7 @@ const ProjectForm = ({onCancel, onSave, project: initialProject}: ProjectFormPro
                 onChange={handleChange} 
             />
             {errors.name.length > 0 && (
-                <div className="card error">
-                    <p>{errors.name}</p>
-                </div>
+                <div className="card error">{errors.name}</div>
             )}
             <label htmlFor="description">Project Description</label>
             <textarea 
@@ -70,9 +70,7 @@ const ProjectForm = ({onCancel, onSave, project: initialProject}: ProjectFormPro
                 onChange={handleChange}    
             />
             {errors.description.length > 0 && (
-                <div className="card error">
-                    <p>{errors.description}</p>
-                </div>
+                <div className="card error">{errors.description}</div>
             )}
             <label htmlFor="budget">Project Budget</label>
             <input 
@@ -83,17 +81,17 @@ const ProjectForm = ({onCancel, onSave, project: initialProject}: ProjectFormPro
                 onChange={handleChange}
             />
             {errors.budget.length > 0 && (
-                <div className="card error">
-                    <p>{errors.budget}</p>
-                </div>
+                <div className="card error">{errors.budget}</div>
             )}
-            <label htmlFor="isActive">Active?</label>
-            <input 
-                type="checkbox" 
-                name="isActive" 
-                checked={project.isActive}
-                onChange={handleChange}
-            />
+            <div className="inline">
+                <label htmlFor="isActive">Active?</label>
+                <input 
+                    type="checkbox" 
+                    name="isActive" 
+                    checked={project.isActive}
+                    onChange={handleChange}
+                />
+            </div>
             <div className="input-group">
                 <button className="primary bordered medium">Save</button>
                 <span></span>
