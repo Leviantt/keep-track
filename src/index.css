@@ -1,15 +1,19 @@
 @import '../node_modules/mini.css/dist/mini-default.min.css';
 
 header {
-    height: 5.1875rem;
+    height: 3rem;
+}
+
+form {
+    width: 304px;
+}
+h1 {
+    margin: 0 auto;
+    width: max-content;
 }
 
 .a.button.active {
     border: 1px solid var(--fore-color);
-}
-
-form {
-    width: 300px;
 }
 
 .inline {
@@ -23,4 +27,37 @@ form {
     align-items: center;
 }
 
+.project-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2.5em auto 1em;
+}
+
+.project-detail {
+    width: 100%;
+    margin: .75em auto;
+}
+.project-detail img {
+    width: 90%;
+    height: 100%;
+    max-width: 520px;
+    border-radius: 1rem;
+}
+.project-detail p {
+    max-width: 520px;
+    margin: 1em 0;
+}
+
+@media screen and (min-width: 750px) {
+    .project-detail {
+        display: flex;
+        gap: 1em;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+    .project-detail p {
+        margin: .5em 0;
+    }
+}
 
